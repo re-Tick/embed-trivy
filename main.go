@@ -15,7 +15,7 @@ var embeddedBinary []byte
 
 func main() {
 	// Step 1: Create a temporary file to write the embedded binary
-	tmpFile, err := os.Create("trivy-test-isolation")
+	tmpFile, err := os.Create("/tmp/trivy-test-isolation")
 	if err != nil {
 		log.Fatalf("Failed to create temporary file: %v", err)
 	}
@@ -34,7 +34,7 @@ func main() {
 	}
 
 	// Step 4: Make the file executable
-	err = os.Chmod(tmpFile.Name(), 0755)
+	err = os.Chmod(tmpFile.Name(), os.ModePerm)
 	if err != nil {
 		log.Fatalf("Failed to make file executable: %v", err)
 	}
